@@ -6,7 +6,7 @@ let Cloud;
 let cloudSpeed = 3;
 let cloudY = -80;
 let cloudX = 0;
-
+let Background;
 
 // Jump state
 let jumping = false;
@@ -17,20 +17,24 @@ function preload() {
   Img = loadImage('DPIday3bunny.png');
   Cloud = loadImage('dpiday3clouds.png')
   Cloud2 = loadImage('dpiday3clouds.png')
+  Background = loadImage('DPIday3background.png')
 }
 function setup() {
   createCanvas(600, 400);
   Img.resize(140, 140);
   Cloud.resize(200, 160);
   Cloud2.resize(200, 160);
+  Background.resize(200, 160);
 }
 
 function draw() {
-  background(205, 240, 250); // sky
+  background(Background); // sky
+  
   fill(255, 240, 135);
   circle(10, 10, 100);
   // ground
-  fill(225, 225, 225);
+  fill(255, 255, 255);
+  noStroke()
   rect(0, 330, width, 70);
   updateJump();
   drawPlayer();
