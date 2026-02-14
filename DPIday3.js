@@ -1,13 +1,20 @@
 // Player position
 let x = 100;
-let y = 300;
+let y = 220;
+let Img;
 
 // Jump state
 let jumping = false;
 let jumpFrame = 0;
 
+
+function preload() {
+  Img = loadImage('DPIday3bunny.png');
+}
 function setup() {
   createCanvas(600, 400);
+  Img.resize(140, 140);
+  
 }
 
 function draw() {
@@ -33,8 +40,20 @@ function jump() {
 
 function keyPressed() {
   if (key === " ") jump();
+  if (keyIsDown( UP_ARROW) === true) {
+    jump();
+  }
+  
+  if (keyIsDown(LEFT_ARROW) === true) {
+    x -= 10;
 
+  }
+
+  if (keyIsDown(RIGHT_ARROW) === true) {
+    x += 10;
+  }
 }
+
 
 
 // ==================================================
@@ -47,11 +66,11 @@ function updateJump() {
 
   let t = jumpFrame / 30;
   let height = sin(t * PI) * 120;
-  y = 300 - height;
+  y = 220 - height;
 
   if (jumpFrame >= 30) {
     jumping = false;
-    y = 300;
+    y = 220;
   }
 }
 
@@ -59,6 +78,6 @@ function updateJump() {
 // 🎨 DRAW PLAYER
 // ==================================================
 function drawPlayer() {
-  fill(255, 60, 60);
-  rect(x, y, 40, 40);
+  newSprite = image(Img, x, y);
 }
+
